@@ -9,6 +9,11 @@ type OrderBook struct {
 // Add a buy order to the order book
 func (book *OrderBook) addBuyOrder(order Order) {
 	n := len(book.BuyOrders)
+	// add order if the buy order book is empty.
+	if n == 0 {
+		book.BuyOrders = []Order{order}
+		return
+	}
 	var i int
 	for i := n - 1; i >= 0; i-- {
 		buyOrder := book.BuyOrders[i]
@@ -27,6 +32,11 @@ func (book *OrderBook) addBuyOrder(order Order) {
 // Add a sell order to the order book
 func (book *OrderBook) addSellOrder(order Order) {
 	n := len(book.SellOrders)
+	// add order if the sell order book is empty.
+	if n == 0 {
+		book.SellOrders = []Order{order}
+		return
+	}
 	var i int
 	for i := n - 1; i >= 0; i-- {
 		sellOrder := book.SellOrders[i]
